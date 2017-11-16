@@ -29,14 +29,14 @@ export default {
       rating: function() {
           var score = parseFloat(this.movie.vote_average)
           var out_of_5 = (score / 2).toFixed(1) + '/5'
-          if(score > 7.5) {
-              return '🔥  ' + out_of_5
+          if(score > 9) {
+              return '🔥🔥🔥  ' + out_of_5
           }
           if(score > 8) {
               return '🔥🔥  ' + out_of_5
           }
-          if(score > 9) {
-              return '🔥🔥🔥  ' + out_of_5
+          if(score > 7.5) {
+              return '🔥  ' + out_of_5
           }
           return out_of_5
       },
