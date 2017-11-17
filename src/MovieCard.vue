@@ -4,7 +4,7 @@
             <img :src="this.poster_url" class="img-responsive">
         </div>
         <div class="card-header">
-            <div class="card-title h5">{{ movie.original_title }} <small>{{rating}}</small></div>
+            <div class="card-title h5">{{ movie.original_title }} <div class="fire">{{ fire_emoji }}</div><small>{{rating}}</small></div>
         </div>
         <div class="card-body">
             <p class="ellipsis">
@@ -29,16 +29,26 @@ export default {
       rating: function() {
           var score = parseFloat(this.movie.vote_average)
           var out_of_5 = (score / 2).toFixed(1) + '/5'
+          return out_of_5
+      },
+      fire_emoji: function() {
+          var score = parseFloat(this.movie.vote_average)
+          if(score > 9.5) {
+              return '🔥🔥🔥🔥🔥'
+          }
           if(score > 9) {
-              return '🔥🔥🔥  ' + out_of_5
+              return '🔥🔥🔥🔥'
           }
           if(score > 8) {
-              return '🔥🔥  ' + out_of_5
+              return '🔥🔥🔥'
           }
-          if(score > 7.5) {
-              return '🔥  ' + out_of_5
+          if(score > 7) {
+              return '🔥🔥'
           }
-          return out_of_5
+          if(score > 6) {
+              return '🔥'
+          }
+          return ''
       },
       short_overview: function() {
           return this.movie.overview.substring(0,200) + '...'
